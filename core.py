@@ -41,7 +41,13 @@ def LoadWordList(filename):
     RawWords = RawWords.strip()
     separator = IdentifySeparator(RawWords)
 
-    return RawWords.split(separator)
+    return CleanWords(RawWords.split(separator))
+
+
+def CleanWords(WordList):
+    """
+    """
+    return [word.strip() for word in WordList]
 
 
 def AppendWordsToDict():
