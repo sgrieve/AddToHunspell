@@ -3,6 +3,7 @@ import sys
 import shutil
 import time
 
+
 def IdentifySeparator(RawWords):
     """
     Pass in a string of RawWords to identify the separator. Will only find
@@ -19,19 +20,6 @@ def IdentifySeparator(RawWords):
     else:
         print '\nWord list is not correctly formatted, separator not found.'
         print 'Use commas, spaces or new lines.\n'
-        sys.exit()
-
-
-def LoadDict(HunPath, DictName='en_US.dic'):
-    """
-    """
-    try:
-        with open(filename + DictName, 'a') as f:
-            pass
-
-    except:
-        print '\nHunspell dictionary - {}{} - not found.\n'.format(HunPath,
-                                                                   DictName)
         sys.exit()
 
 
@@ -75,14 +63,30 @@ def CleanWords(WordList):
     return [word.strip() for word in WordList]
 
 
-def AppendWordsToDict():
+def AppendWordsToDict(WordList, HunPath, DictName='en_US.dic'):
     """
     """
-    pass
+    try:
+        with open(HunPath + DictName, 'a') as f:
+            for word in WordList:
+                f.write(word + '\n')
+
+        print '\nSUCCESS - {} words written '\
+            'to the dictionary.\n'.format(len(WordList))
+
+    except:
+        print '\nHunspell dictionary - {}{} - not found.\n'.format(HunPath,
+                                                                   DictName)
+        sys.exit()
 
 
-MakeBackup('/home/sgrieve/', 'paths.txt')
+words = LoadWordList('Geomorphology.txt')
+MakeBackup('/home/sgrieve/test/', 'test.txt')
+AppendWordsToDict(words, '/home/sgrieve/test/', 'test.txt')
+
+'''
 print LoadWordList('Geomorphology.txt')
 print LoadWordList('Geomorphology2.txt')
 print LoadWordList('Geomorphology3.txt')
 print LoadWordList('Geomorphology4.txt')
+'''
