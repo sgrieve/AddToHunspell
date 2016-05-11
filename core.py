@@ -1,10 +1,10 @@
 import os
 
 
-def IdentifySeparator():
+def IdentifySeparator(RawWords):
     """
     """
-    pass
+    return '\n'
 
 
 def LoadDict():
@@ -20,13 +20,21 @@ def MakeBackup():
     pass
 
 
-def LoadWordList():
+def LoadWordList(filename):
     """
     """
-    pass
+    with open(filename, 'r') as f:
+        RawWords = f.read()
+
+    RawWords = RawWords.strip()
+    separator = IdentifySeparator(RawWords)
+
+    return RawWords.split(separator)
 
 
 def AppendWordsToDict():
     """
     """
     pass
+
+print LoadWordList('Geomorphology.txt')
