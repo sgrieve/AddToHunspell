@@ -1,10 +1,22 @@
 import os
+import sys
 
 
 def IdentifySeparator(RawWords):
     """
     """
-    return '\n'
+    if (',' in RawWords or ', ' in RawWords):
+        return ','
+    elif ' ' in RawWords:
+        return ' '
+    elif '\n' in RawWords:
+        return '\n'
+    else:
+        print
+        print 'Word list is not correctly formatted, separator not found.'
+        print 'Use commas, spaces or new lines.'
+        print
+        sys.exit()
 
 
 def LoadDict():
@@ -37,4 +49,7 @@ def AppendWordsToDict():
     """
     pass
 
+
 print LoadWordList('Geomorphology.txt')
+print LoadWordList('Geomorphology2.txt')
+print LoadWordList('Geomorphology3.txt')
