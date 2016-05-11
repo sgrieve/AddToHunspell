@@ -1,6 +1,7 @@
 import os
 import sys
-
+import shutil
+import time
 
 def IdentifySeparator(RawWords):
     """
@@ -21,26 +22,42 @@ def IdentifySeparator(RawWords):
         sys.exit()
 
 
-def LoadDict():
+def LoadDict(HunPath, DictName='en_US.dic'):
     """
     """
-    pass
+    try:
+        with open(filename + DictName, 'a') as f:
+            pass
+
+    except:
+        print '\nHunspell dictionary - {}{} - not found.\n'.format(HunPath,
+                                                                   DictName)
+        sys.exit()
 
 
-def MakeBackup():
+def MakeBackup(HunPath, DictName='en_US.dic'):
     """
     Timestamp these backups
     """
-    pass
+    if os.path.exists(HunPath + DictName):
+        TimeStamp = time.strftime('%d-%m-%Y_%H%M', time.localtime())
+        BackupName = ('.BACKUP_' + timestamp)
+        shutil.copy(HunPath + DictName, HunPath + DictName + BackupName)
+    else:
+        print '\nHunspell dictionary - {}{} - not found.\n'.format(HunPath,
+                                                                   DictName)
+        sys.exit()
+
+MakeBackup('/home/sgrieve/', 'paths.txt')
 
 
-def LoadWordList(filename):
+def LoadWordList(Filename):
     """
     Take a filename and load the words contained in that file, returning a list
     of words, cleaned to remove separators and whitespace.
     """
     try:
-        with open(filename, 'r') as f:
+        with open(Filename, 'r') as f:
             RawWords = f.read()
 
         RawWords = RawWords.strip()
@@ -48,7 +65,7 @@ def LoadWordList(filename):
 
         return CleanWords(RawWords.split(separator))
     except:
-        print '\nWord list file - {} - not found.\n'.format(filename)
+        print '\nWord list file - {} - not found.\n'.format(Filename)
         sys.exit()
 
 
