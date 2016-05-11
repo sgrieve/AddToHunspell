@@ -83,10 +83,3 @@ def AppendWordsToDict(WordList, HunPath, DictName='en_US.dic'):
 words = LoadWordList('Geomorphology.txt')
 MakeBackup('/home/sgrieve/test/', 'test.txt')
 AppendWordsToDict(words, '/home/sgrieve/test/', 'test.txt')
-
-'''
-print LoadWordList('Geomorphology.txt')
-print LoadWordList('Geomorphology2.txt')
-print LoadWordList('Geomorphology3.txt')
-print LoadWordList('Geomorphology4.txt')
-'''
