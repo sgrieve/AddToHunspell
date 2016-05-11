@@ -27,7 +27,7 @@ def MakeBackup(HunPath, DictName='en_US.dic'):
     """
     Create a timestamped backup of the Hunspell dictionary in the same location.
     """
-    if os.path.exists(HunPath + DictName):
+    if os.path.exists(os.path.join(HunPath, DictName)):
         TimeStamp = time.strftime('%d-%m-%Y_%H%M', time.localtime())
         BackupName = ('.BACKUP_' + TimeStamp)
         shutil.copy(HunPath + DictName, HunPath + DictName + BackupName)
@@ -68,7 +68,7 @@ def AppendWordsToDict(WordList, HunPath, DictName='en_US.dic'):
     Load the Hunspell dictionary and append the supplied words to it.
     """
     try:
-        with open(HunPath + DictName, 'a') as f:
+        with open(os.path.join(HunPath, DictName), 'a') as f:
             for word in WordList:
                 f.write(word + '\n')
 
@@ -80,7 +80,6 @@ def AppendWordsToDict(WordList, HunPath, DictName='en_US.dic'):
                                                                    DictName)
         sys.exit()
 
-
 words = LoadWordList('Geomorphology.txt')
-MakeBackup('/home/sgrieve/test/', 'test.txt')
-AppendWordsToDict(words, '/home/sgrieve/test/', 'test.txt')
+MakeBackup('/opt/atom/resources/app.asar.unpacked/node_modules/spell-check/node_modules/spellchecker/vendor/hunspell_dictionaries/')
+AppendWordsToDict(words, '/opt/atom/resources/app.asar.unpacked/node_modules/spell-check/node_modules/spellchecker/vendor/hunspell_dictionaries/')
