@@ -25,7 +25,7 @@ def IdentifySeparator(RawWords):
 
 def MakeBackup(HunPath, DictName='en_US.dic'):
     """
-    Timestamp these backups
+    Create a timestamped backup of the Hunspell dictionary in the same location.
     """
     if os.path.exists(HunPath + DictName):
         TimeStamp = time.strftime('%d-%m-%Y_%H%M', time.localtime())
@@ -65,6 +65,7 @@ def CleanWords(WordList):
 
 def AppendWordsToDict(WordList, HunPath, DictName='en_US.dic'):
     """
+    Load the Hunspell dictionary and append the supplied words to it.
     """
     try:
         with open(HunPath + DictName, 'a') as f:
