@@ -41,14 +41,12 @@ def MakeBackup(HunPath, DictName='en_US.dic'):
     """
     if os.path.exists(HunPath + DictName):
         TimeStamp = time.strftime('%d-%m-%Y_%H%M', time.localtime())
-        BackupName = ('.BACKUP_' + timestamp)
+        BackupName = ('.BACKUP_' + TimeStamp)
         shutil.copy(HunPath + DictName, HunPath + DictName + BackupName)
     else:
         print '\nHunspell dictionary - {}{} - not found.\n'.format(HunPath,
                                                                    DictName)
         sys.exit()
-
-MakeBackup('/home/sgrieve/', 'paths.txt')
 
 
 def LoadWordList(Filename):
@@ -83,6 +81,7 @@ def AppendWordsToDict():
     pass
 
 
+MakeBackup('/home/sgrieve/', 'paths.txt')
 print LoadWordList('Geomorphology.txt')
 print LoadWordList('Geomorphology2.txt')
 print LoadWordList('Geomorphology3.txt')
