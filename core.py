@@ -79,7 +79,3 @@ def AppendWordsToDict(WordList, HunPath, DictName='en_US.dic'):
         print '\nHunspell dictionary - {}{} - not found.\n'.format(HunPath,
                                                                    DictName)
         sys.exit()
-
-words = LoadWordList('Geomorphology.txt')
-MakeBackup('/opt/atom/resources/app.asar.unpacked/node_modules/spell-check/node_modules/spellchecker/vendor/hunspell_dictionaries/')
-AppendWordsToDict(words, '/opt/atom/resources/app.asar.unpacked/node_modules/spell-check/node_modules/spellchecker/vendor/hunspell_dictionaries/')
